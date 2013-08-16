@@ -14,9 +14,8 @@ class Runner
 			puts "Modify            - press 2"
 			puts "Display All       - press 3"
 			puts "Display Contact   - press 4"
-			puts "Display Attribute - press 5"
-			puts "Delete Contact    - press 6"
-			puts "Exit              - press 7"
+			puts "Delete Contact    - press 5"
+			puts "Exit              - press 6"
 
 			input = gets.chomp.to_i
 
@@ -50,10 +49,10 @@ class Runner
 
 		  when 2 # Modify a contact
 		  	# first find a contact
-		  	puts "What contact are you looking for for?"
+		  	puts "What contact are you looking for?"
 		  	search = gets.chomp
 		  	contact = @db.find_contact(search)
-		  	puts "Great, lets update #{contact.firstname}!"
+		  	puts "Great, lets update #{contact.firstname.capitalize}!"
 
 		  	puts "What attribute do you want modify?"
 		  	attribute = gets.chomp.downcase
@@ -82,14 +81,33 @@ class Runner
 	      contact = @db.find_contact(search)
 	      contact.display(contact)
 
-			when 5
-			  puts 'You need help!!!'
+
+			when 5# delete contact
+				puts "Deleting a contact? Snap, s*** got serious!"
+				puts "Let's find that contact"
+
+				search = gets.chomp.downcase
+				contact = @db.find_contact(search)
+
+				puts "Is this the contact?(y/n)"
+				contact.display(contact)
+				confirmation = gets.chomp.downcase
+				
+				if confirmation == 'y'
+				  contact.delete
+				  binding.pry
+			  elsif confirmation == 'n'
+			  	puts "Ok, not the droid we're looking for"
+			  	break
+			  else
+			  	puts "Sorry, I didn't get that response"
+			  end
+
 			when 6
-			  puts 'You need help!!!'
-			when 7
+				puts "See ya later!"
 			  break
 			else
-			  puts "Didn't catch that"
+			  puts "Didn't catch that, try again"
 			end	
 	end
 end

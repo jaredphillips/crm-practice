@@ -32,6 +32,10 @@ class Database
 		end
 	end
 
+	def display_contact(contact)
+		contact.display(contact)
+	end
+
 	def display_info_by_attribute
 	end
 
