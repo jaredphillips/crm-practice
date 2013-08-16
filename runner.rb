@@ -85,17 +85,14 @@ class Runner
 			when 5# delete contact
 				puts "Deleting a contact? Snap, s*** got serious!"
 				puts "Let's find that contact"
+		  	search = gets.chomp
+		  	contact = @db.find_contact(search)
+		  	puts "Confirm that we are #{contact.firstname.capitalize} (y or n)."
 
-				search = gets.chomp.downcase
-				contact = @db.find_contact(search)
-
-				puts "Is this the contact?(y/n)"
-				contact.display(contact)
 				confirmation = gets.chomp.downcase
 				
 				if confirmation == 'y'
-				  contact.delete
-				  binding.pry
+				  @db.delete_contact(contact)
 			  elsif confirmation == 'n'
 			  	puts "Ok, not the droid we're looking for"
 			  	break

@@ -39,6 +39,8 @@ class Database
 	def display_info_by_attribute
 	end
 
-	def delete_contact
+	def delete_contact(contact)
+		contact_index = @contacts_array.index(contact)
+		@contacts_array.delete_at(contact_index)
 	end
 end
