@@ -74,11 +74,12 @@ class Runner
 				@db.display_all_contacts
 
 			when 4 #display a contact
-				puts "Search by id, first name, last name or email address?"
+				puts "Search by first name, last name or email address?"
 			  search = gets.chomp.downcase
 			  puts "Yep, found them. Here you go."
 
 	      contact = @db.find_contact(search)
+	      binding.pry
 	      contact.display(contact)
 
 
